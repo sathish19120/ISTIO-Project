@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: payment
+  namespace: istio-kt
+spec:
+  hosts:
+  - payment.istio-kt.svc.cluster.local
+  http:
+  - match:
+    - headers:
+        x-demo-fault:
+          exact: 'yes'
+    fault:
+      delay:
+        percentage:
+          value: 100.0
+        fixedDelay: 2s
+    route:
+    - destination:
+        host: payment.istio-kt.svc.cluster.local
+        subset: v1
+  - route:
+    - destination:
+        host: payment.istio-kt.svc.cluster.local
+        subset: v1
+    retries:
+      attempts: 0

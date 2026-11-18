@@ -1,0 +1,31 @@
+digraph Mesh {
+  graph [rankdir=TB, bgcolor="white", fontname="Arial", nodesep=.5, ranksep=.65, pad=.25];
+  node [shape=box, style="rounded,filled", fillcolor="#EDF3F7", fontname="Arial", fontsize=12];
+  edge [fontname="Arial", fontsize=10];
+  browser [label="Browser dashboard\nlocalhost 8080"];
+  control [label="istiod\nControl plane", fillcolor="#D9E8F1"];
+  subgraph cluster_front {
+    label="Storefront Pod"; fontname="Arial"; style=rounded;
+    app [label="Storefront application"];
+    source [label="Envoy sidecar"];
+    app -> source [label="Payment HTTP call"];
+  }
+  subgraph cluster_v1 {
+    label="Payment v1 Pod"; fontname="Arial"; style=rounded;
+    proxy1 [label="Envoy sidecar"];
+    v1 [label="Payment v1 application"];
+    proxy1 -> v1;
+  }
+  subgraph cluster_v2 {
+    label="Payment v2 Pod"; fontname="Arial"; style=rounded;
+    proxy2 [label="Envoy sidecar"];
+    v2 [label="Payment v2 application"];
+    proxy2 -> v2;
+  }
+  browser -> app [label="local port forward"];
+  source -> proxy1 [label="route to v1"];
+  source -> proxy2 [label="route or mirror to v2"];
+  control -> source [style=dashed, color="#637E91", label="configuration"];
+  control -> proxy1 [style=dashed, color="#637E91"];
+  control -> proxy2 [style=dashed, color="#637E91"];
+}

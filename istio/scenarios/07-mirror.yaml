@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: payment
+  namespace: istio-kt
+spec:
+  hosts:
+  - payment.istio-kt.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: payment.istio-kt.svc.cluster.local
+        subset: v1
+    retries:
+      attempts: 0
+    mirror:
+      host: payment.istio-kt.svc.cluster.local
+      subset: v2
+    mirrorPercentage:
+      value: 100.0

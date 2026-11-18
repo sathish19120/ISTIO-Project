@@ -1,0 +1,11 @@
+test_no_application_retries_and_query_preserved (__main__.AppTests.test_no_application_retries_and_query_preserved) ... ok
+test_routing_signals_reach_backend (__main__.AppTests.test_routing_signals_reach_backend) ... ok
+test_slow_backend (__main__.AppTests.test_slow_backend) ... ok
+test_storefront_forwards_request_id (__main__.AppTests.test_storefront_forwards_request_id) ... ok
+test_two_versions (__main__.AppTests.test_two_versions) ... ok
+test_ui_and_unknown_endpoint (__main__.AppTests.test_ui_and_unknown_endpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.765s
+
+OK

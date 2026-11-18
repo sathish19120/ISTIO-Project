@@ -1,0 +1,28 @@
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: strict
+  namespace: istio-kt
+spec:
+  mtls:
+    mode: STRICT
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: storefront-to-payment
+  namespace: istio-kt
+spec:
+  selector:
+    matchLabels:
+      app: payment
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/istio-kt/sa/storefront
+    to:
+    - operation:
+        methods:
+        - GET
