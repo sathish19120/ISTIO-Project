@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mesh Shop Istio KT Lab
 
 A small, read-only shopping demo for learning service-to-service routing and recording a knowledge transfer video. You get a storefront, Payment v1, Payment v2 and eleven alternative Istio policies. The UI shows version counts, status, latency and backend attempt number.
@@ -56,3 +57,6 @@ All scenario files define the **same VirtualService identity**. Applying another
 See `VALIDATION.md` for checks actually run. Local application tests and static consistency checks do not validate an Envoy runtime. A live Kubernetes/Istio test is still required on your laptop. Faults and timeouts depend on your cluster and policy propagation; expected results are documented, not claimed as observed mesh results.
 
 For a production deployment you would pin image digests, review dependency and cluster support, add persistence only if required, design identities and network policy, protect dashboards, measure resource limits and rehearse upgrades. This learning app uses a threaded Python HTTP server and is not a production web server.
+=======
+# ISTIO-Project
+>>>>>>> origin/main
